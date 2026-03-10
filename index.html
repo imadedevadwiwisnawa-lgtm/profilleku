@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Dewa - [Deva]</title>
+    <!-- Ganti Font ke Nuansa Mitologi Yunani -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cinzel', serif; /* Font klasik yang sangat elegan dan kuno */
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+            overflow-x: hidden;
+            background-color: #000;
+        }
+
+        /* Layer Background yang Bergerak */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('greek_bg.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: majesticZoom 25s infinite alternate linear;
+            filter: brightness(0.6) contrast(1.2); /* Bikin lebih dramatis */
+        }
+
+        /* Layer Efek Kilat Petir Zeus */
+        .lightning-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #fff;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+            animation: zeusStrike 12s infinite;
+        }
+
+        /* Animasi Zoom Perlahan */
+        @keyframes majesticZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Animasi Petir Menyambar (Cepat & Acak) */
+        @keyframes zeusStrike {
+            0%, 95%, 98%, 100% { opacity: 0; }
+            96% { opacity: 0.9; }
+            97% { opacity: 0; }
+            99% { opacity: 0.6; }
+        }
+
+        /* Ornamen Garis Atas dan Bawah Profil */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            /* Latar belakang seperti perkamen/kertas kuno */
+            background: linear-gradient(135deg, rgba(250, 240, 230, 0.9) 0%, rgba(255, 235, 205, 0.85) 100%);
+            padding: 40px;
+            border-radius: 4px; /* Tidak terlalu bulat agar terkesan seperti lempengan batu/kertas */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            border: 3px double #d4af37; /* Aksen Gold/Emas Klasik, model double */
+            backdrop-filter: blur(8px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Ornamen Sudut (Pseudo-elements) */
+        .container::before, .container::after {
+            content: "❖";
+            position: absolute;
+            color: #d4af37;
+            font-size: 30px;
+        }
+        .container::before { top: 5px; left: 10px; }
+        .container::after { bottom: 5px; right: 10px; }
+
+        .container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.8);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        h1 {
+            color: #1a252f;
+            font-family: 'Cinzel Decorative', serif;
+            margin-bottom: 5px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.4);
+        }
+
+        .school-info {
+            font-size: 1.2em;
+            color: #8b0000; /* Merah Spartan */
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+        }
+
+        /* Ornamen Pembatas Garis */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 30px 0;
+        }
+
+        .section-title {
+            color: #8b0000;
+            font-family: 'Cinzel Decorative', serif;
+            text-align: center;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: "✦ ✧ ✦";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6em;
+            color: #d4af37;
+            letter-spacing: 5px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            color: #34495e;
+            font-weight: bold;
+        }
+
+        /* Styling List ala Mitologi */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            font-size: 1.15em;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            border-right: 4px solid #d4af37;
+            border-radius: 5px;
+            transition: background 0.3s;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        ul li:hover {
+            background: rgba(212, 175, 55, 0.3);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Kutipan Ilahi */
+        .quote-box {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.3em;
+            color: #1a252f;
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: "❝";
+            font-size: 3em;
+            color: rgba(212, 175, 55, 0.3);
+            position: absolute;
+            left: 20px;
+            top: -15px;
+        }
+        .quote-box::after {
+            content: "❞";
+            font-size: 3em;
+            color: rgba(212, 175, 55, 0.3);
+            position: absolute;
+            right: 20px;
+            bottom: -35px;
+        }
+
+        /* Atribut Kekuatan (Progress Bars) */
+        .attributes {
+            margin-top: 30px;
+        }
+
+        .attr-row {
+            margin-bottom: 15px;
+        }
+
+        .attr-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .attr-bar-bg {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+            border: 1px solid #8b0000;
+        }
+
+        .attr-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f1c40f);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        /* Sekutu & Senjata Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .card h3 {
+            color: #8b0000;
+            margin-top: 0;
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        .card p {
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        /* Tombol Summon Petir */
+        .summon-btn {
+            display: block;
+            margin: 40px auto 10px;
+            padding: 15px 30px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2em;
+            color: #fff;
+            background: linear-gradient(45deg, #1a252f, #2c3e50);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .summon-btn:hover {
+            background: linear-gradient(45deg, #d4af37, #f1c40f);
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 20px rgba(212, 175, 55, 1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overlay Efek Petir -->
+    <div class="lightning-overlay"></div>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="zeus_profile.png" alt="Foto Profil Zeus" class="profile-pic">
+            <h1>[I Made Deva Dwi Wisnawa]</h1>
+            <p class="school-info">Ksatria Tertinggi di Kuil Pemikir Olympus (SMA N 2 Mengwi)</p>
+        </div>
+
+        <div class="quote-box">
+            "Kekuatan bukanlah dari kilat yang menyambar, melainkan dari kebijaksanaan yang menuntun kemana arahnya."
+            <br>
+            <span style="font-size: 0.8em; color: #8b0000; font-weight: bold; font-style: normal; font-family: 'Cinzel Decorative', serif;">— Ajaran Sang Dewa Petir</span>
+        </div>
+
+        <h2 class="section-title">Kisah Pahlawan</h2>
+        <p>Salam manusia fana! Saya adalah Penguasa Petir dan pencari kebijaksanaan di Kuil Olympus Cabang SMA Negeri 2 Mengwi. Jiwa saya senantiasa lapar akan ilmu pengetahuan layaknya Dewi Athena, dan selalu mencari pengembaraan epik baru bagai kepulangan Sang Odysseus melintasi lautan lepas. Saya percaya bahwa kebijaksanaan sejati adalah senjata sakti—lebih kuat dari tombak api Ares—untuk mengukir takdir masa depan kehidupan umat.</p>
+        <p>Di Kuil Suci ini, saya melatih intonasi kecerdikan dalam membaca gulungan kode magis (Informatika) dan menguasai bahasa kaum dari dunia seberang (Bahasa Inggris). Saat senja menyapa balairung, saya beristirahat di singgasana sambil mendengarkan kidung nyanyian sang Apollo (Mendengarkan Musik).</p>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Atribut Kekuatan Ilahi</h2>
+        <div class="attributes">
+            <div class="attr-row">
+                <div class="attr-label"><span>Kebijaksanaan (Athena)</span> <span>95%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="attr-row">
+                <div class="attr-label"><span>Kekuatan Petir (Zeus)</span> <span>100%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 100%; animation: pulse 1s infinite alternate;"></div></div>
+            </div>
+            <div class="attr-row">
+                <div class="attr-label"><span>Strategi Peperangan (Ares)</span> <span>85%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="attr-row">
+                <div class="attr-label"><span>Kelincahan Magis (Hermes)</span> <span>80%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 80%;"></div></div>
+            </div>
+        </div>
+
+        <style>
+            @keyframes pulse {
+                0% { filter: brightness(1); }
+                100% { filter: brightness(1.6); box-shadow: 0 0 25px rgba(255,255,255,0.8); }
+            }
+        </style>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Jejak Legenda</h2>
+        <ul>
+            <li><strong>Kuil Pemikir Besar (SMA N 2 Mengwi)</strong><br>[Klan XI B1], Masa Kejayaan 2024 - Kekekalan Akhir</li>
+            <li><strong>Akademi Ksatria Pemula (SMP N 2 Kediri)</strong><br>Era Peperangan 2021-2024</li>
+        </ul>
+
+        <h2 class="section-title">Ritual & Kesenangan Rohani</h2>
+        <ul>
+            <li>Kidung Nyanyian Apollo (Musik)</li>
+            <li>Menjelajah Puncak Olimpus (Hiking)</li>
+            <li>Simulasi Perang Trojan (Main Game)</li>
+            <li>Bahasa Kebikjasanaan Kuno (B. Inggris)</li>
+            <li>Merangkai Mantra Digital (Informatika)</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Artefak Suci & Pusaka</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>⚡ Masterbolt</h3>
+                <p>Senjata pamungkas dari petir murni. Mampu menghancurkan rintangan tugas sekolah dan ujian dengan kekuatan tak terbatas.</p>
+            </div>
+            <div class="card">
+                <h3>🛡️ Perisai Aegis</h3>
+                <p>Tameng pelindung bertahtakan kepala Medusa. Menghalau energi negatif, rasa malas, dan godaan untuk menyerah.</p>
+            </div>
+            <div class="card">
+                <h3>📖 Gulungan Takdir (Laptop/PC)</h3>
+                <p>Artefak kuno untuk membaca dan merangkai mantra digital (coding) melintasi ruang dan waktu.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Sekutu & Makhluk Mitologi</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>🦅 Elang Emas Kaukasus</h3>
+                <p>Hewan peliharaan suci sang Dewa Petir. Mata-mata dari langit yang mengawasi segala pergerakan.</p>
+            </div>
+            <div class="card">
+                <h3>🐴 Pegasus (Kendaraan)</h3>
+                <p>Kuda bersayap tunggangan abadi untuk pergi ke dan dari Kuil Pemikir (Sekolah) dengan kelincahan penuh.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Bahasa Para Dewa (Languages)</h2>
+        <div class="attributes">
+            <div class="attr-row">
+                <div class="attr-label"><span>Bahasa Indonesia (Lidah Pertiwi)</span> <span>100%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="attr-row">
+                <div class="attr-label"><span>Bahasa Inggris (Lidah Olympus)</span> <span>85%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="attr-row">
+                <div class="attr-label"><span>Bahasa Pemrograman (Mantra Kode)</span> <span>70%</span></div>
+                <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 70%;"></div></div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Kisah Epik Terukir (Prestasi & Proyek)</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>🏛️ Pembangunan Kuil Digital</h3>
+                <p>Merancang antarmuka (UI/UX) untuk situs web dengan nuansa dewa-dewi mitologi seperti yang Anda saksikan saat ini.</p>
+            </div>
+            <div class="card">
+                <h3>🎼 Nyanyian Kemenangan</h3>
+                <p>Telah menaklukkan lebih dari 100+ mahakarya musik (mendengarkan musik) sebagai sarana meditasi pikiran.</p>
+            </div>
+            <div class="card">
+                <h3>⚔️ Penakluk Batas Wilayah</h3>
+                <p>Ekspedisi menaklukkan berbagai puncak bukit (Hiking) menantang ketahanan fisik dan mental.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Pemanggilan Ilahi (Kontak)</h2>
+        <p style="text-align: center;">Kirimkan persembahan doa atau pesan rahasia melalui portal komunikasi ini:</p>
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+            <div class="card" style="padding: 10px;">
+                <h3>📜 Gulungan Pesan (Email)</h3>
+                <p>imadedevadwiwisnawa@gmail.com</p>
+            </div>
+            <div class="card" style="padding: 10px;">
+                <h3>🕊️ Burung Pengantar (Telepon)</h3>
+                <p>082266852727</p>
+            </div>
+            <div class="card" style="padding: 10px;">
+                <h3>👁️ Cermin Orakel (Instagram)</h3>
+                <p>@dekkkkkkkkkpaaaaaaaaa</p>
+            </div>
+        </div>
+
+        <button class="summon-btn" onclick="summonThunder()">⚡ Bangkitkan Kekuatan Petir! ⚡</button>
+    </div>
+
+    <!-- Script Javascript untuk Interaksi Summon Petir -->
+    <script>
+        function summonThunder() {
+            const overlay = document.querySelector('.lightning-overlay');
+            
+            // Hapus animasi existing dan paksa reflow agar animasi bisa restart
+            overlay.style.animation = 'none';
+            void overlay.offsetWidth; 
+            
+            // Tambahkan class animasi kilat sekali jalan
+            overlay.style.animation = 'summonStrike 1.5s ease-out forwards';
+            
+            // Tambahkan efek getar ke container
+            const container = document.querySelector('.container');
+            container.style.transform = 'translateY(-10px) translateX(10px)';
+            setTimeout(() => { container.style.transform = 'translateY(10px) translateX(-10px)'; }, 50);
+            setTimeout(() => { container.style.transform = 'translateY(-5px) translateX(5px)'; }, 100);
+            setTimeout(() => { container.style.transform = 'none'; }, 150);
+            
+            // Kembalikan animasi default
+            setTimeout(() => {
+                overlay.style.animation = 'zeusStrike 12s infinite';
+            }, 1500);
+        }
+    </script>
+    <style>
+        @keyframes summonStrike {
+            0% { opacity: 0; background-color: #fff;}
+            10% { opacity: 1; }
+            20% { opacity: 0; }
+            30% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</body>
+
+</html>
